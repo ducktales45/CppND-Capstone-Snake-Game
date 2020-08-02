@@ -4,14 +4,17 @@
 #include <vector>
 #include "SDL.h"
 #include "snake.h"
+#include "paddle.h"
+#include "ball.h"
 
-class Renderer {
+class Renderer 
+{
  public:
   Renderer(const std::size_t screen_width, const std::size_t screen_height,
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer();
 
-  void Render(Snake const snake, SDL_Point const &food);
+  void Render(Snake const snake,Paddle paddle1, Paddle paddle2, Ball ball);
   void UpdateWindowTitle(int score, int fps);
 
  private:

@@ -1,41 +1,49 @@
 #include "controller.h"
 #include <iostream>
 #include "SDL.h"
-#include "snake.h"
+#include "paddle.h"
 
-void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
-                                 Snake::Direction opposite) const {
-  if (snake.direction != opposite || snake.size == 1) snake.direction = input;
-  return;
+void Controller::ChangeDirection(Paddle &paddle, Paddle::Direction input) const 
+{   
+  paddle.direction = input;  
 }
 
-void Controller::HandleInput(bool &running, Snake &snake) const {
+void Controller::HandleInput(bool &running, Paddle &paddle1, Paddle &paddle2) const 
+{
   SDL_Event e;
-  while (SDL_PollEvent(&e)) {
-    if (e.type == SDL_QUIT) {
+  while (SDL_PollEvent(&e)) 
+  {
+    if (e.type == SDL_QUIT) 
+    {
       running = false;
-    } else if (e.type == SDL_KEYDOWN) {
-      switch (e.key.keysym.sym) {
+    } 
+    else if (e.type == SDL_KEYDOWN) 
+    {
+      switch (e.key.keysym.sym) 
+      {
         case SDLK_UP:
-          ChangeDirection(snake, Snake::Direction::kUp,
-                          Snake::Direction::kDown);
+          std::cout << "up is pressed" << "\n";
+          ChangeDirection(paddle1, Paddle::Direction::kUp);
           break;
 
         case SDLK_DOWN:
-          ChangeDirection(snake, Snake::Direction::kDown,
-                          Snake::Direction::kUp);
+          std::cout << "down is pressed" << "\n";
+          ChangeDirection(paddle1, Paddle::Direction::kDown);
           break;
 
-        case SDLK_LEFT:
-          ChangeDirection(snake, Snake::Direction::kLeft,
-                          Snake::Direction::kRight);
+        case SDLK_w:
+          std::cout << "w is pressed" << "\n";
+          ChangeDirection(paddle2, Paddle::Direction::kUp);
           break;
-
-        case SDLK_RIGHT:
-          ChangeDirection(snake, Snake::Direction::kRight,
-                          Snake::Direction::kLeft);
-          break;
+        
+        case SDLK_s:
+          std::cout << "s is pressed" << "\n";
+          ChangeDirection(paddle2, Paddle::Direction::kDown);
+          break;    
       }
     }
+    else if (e.type == SDL_KEYUP)
+      ChangeDirection(paddle1, Paddle::Direction::kNone);
+      ChangeDirection(paddle2, Paddle::Direction::kNone);
   }
 }

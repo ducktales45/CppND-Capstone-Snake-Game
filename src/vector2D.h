@@ -1,3 +1,6 @@
+#ifndef VECTOR2D_H
+#define VECTOR2D_H
+
 struct Vector2D
 {
     float x, y;
@@ -23,3 +26,4 @@ struct Vector2D
     }
 
 };
+#endif
