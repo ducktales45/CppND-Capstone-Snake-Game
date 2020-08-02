@@ -2,10 +2,10 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game( std::size_t grid_width, std::size_t grid_height): snake(grid_width, grid_height),
+Game::Game( std::size_t grid_width, std::size_t grid_height):
             paddle1(50.0f, (grid_height  / 2.0f) - (PADDLE_HEIGHT / 2.0f), 1.5f),
             paddle2(grid_width - 50.0f, (grid_height / 2.0f) - (PADDLE_HEIGHT / 2.0f), 1.5f),
-            ball((grid_width / 2.0) - (BALL_WIDTH / 2.0), (grid_height / 2.0) - (BALL_HEIGHT / 2.0), -1.0f, 1.0f)
+            ball((grid_width / 2.0) - (BALL_WIDTH / 2.0), (grid_height / 2.0) - (BALL_HEIGHT / 2.0), -1.0f, 0.0f)
 {}
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) 
@@ -23,7 +23,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, paddle1, paddle2);
     Update();
-    renderer.Render(snake, paddle1, paddle2, ball);
+    renderer.Render(paddle1, paddle2, ball);
     
     frame_end = SDL_GetTicks();
 
@@ -96,4 +96,3 @@ void Game::Update()
 }
 
 int Game::GetScore() const { return score; }
-int Game::GetSize() const { return snake.size; }

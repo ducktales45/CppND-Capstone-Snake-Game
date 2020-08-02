@@ -4,7 +4,6 @@
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
-#include "snake.h"
 #include "paddle.h"
 #include "ball.h"
 
@@ -14,10 +13,8 @@ class Game {
   void Run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
   int GetScore() const;
-  int GetSize() const;
   bool FIsCollision(Paddle& paddle);
  private:
-  Snake snake;
   Paddle paddle1;
   Paddle paddle2;
   Ball ball;

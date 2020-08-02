@@ -9,6 +9,7 @@ class Controller {
 
  private:
   void ChangeDirection(Paddle &paddle, Paddle::Direction input) const;
+  void ChangeDirection(Paddle &paddle1, Paddle &paddle2, Paddle::Direction input) const;
 };
 
 #endif
