@@ -2,10 +2,10 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game( std::size_t grid_width, std::size_t grid_height):
-            paddle1(50.0f, (grid_height  / 2.0f) - (PADDLE_HEIGHT / 2.0f), 1.5f),
-            paddle2(grid_width - 50.0f, (grid_height / 2.0f) - (PADDLE_HEIGHT / 2.0f), 1.5f),
-            ball((grid_width / 2.0) - (BALL_WIDTH / 2.0), (grid_height / 2.0) - (BALL_HEIGHT / 2.0), -1.0f, 0.0f)
+Game::Game( std::size_t screen_width, std::size_t screen_height): screen_width(screen_width), screen_height(screen_height),
+            paddle1(50.0f, (screen_height  / 2.0f) - (PADDLE_HEIGHT / 2.0f), 1.5f),
+            paddle2(screen_width - 50.0f, (screen_height / 2.0f) - (PADDLE_HEIGHT / 2.0f), 1.5f),
+            ball((screen_width / 2.0) - (BALL_WIDTH / 2.0), (screen_height / 2.0) - (BALL_HEIGHT / 2.0), -1.0f, 0.0f)
 {}
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) 
@@ -34,7 +34,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
 
     // After every second, update the window title.
     if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(score, frame_count);
+      renderer.UpdateWindowTitle(score1, score2,frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
     }
@@ -93,6 +93,32 @@ void Game::Update()
     ball.ChangeXDir();
     ball.ChangeYDir();
   }
+
+  if (ball.GetXCoord() > screen_width && ball.GetXCoord() < screen_width + 1)
+  {
+    score1++;
+    ball.ResetBall(screen_width, screen_height); 
+  }
+  else if (ball.GetXCoord() < 0 && ball.GetXCoord() > -1)
+  {
+    score2++;
+    ball.ResetBall(screen_width, screen_height);  
+  }
 }
 
-int Game::GetScore() const { return score; }
+void Game::PrintFinalScore() const 
+{ 
+  std::cout << "Final Score: " << score1 << " vs " << score2 << "\n";
+  if (score1 > score2)
+  {
+    std::cout << "Player 1 wins" << "\n";
+  }
+  else if (score2 > score1)
+  {
+    std::cout << "Player 2 wins" << "\n";
+  }
+  else
+  {
+    std::cout << "It's a tie." << "\n";
+  }
+}

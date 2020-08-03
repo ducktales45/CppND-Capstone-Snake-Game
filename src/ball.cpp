@@ -15,6 +15,12 @@ void Ball::Update()
 
 }
 
+void Ball::ResetBall(const std::size_t screen_width, const std::size_t screen_height)
+{
+    x = (screen_width / 2.0) - (BALL_WIDTH / 2.0);
+    y = (screen_height / 2.0) - (BALL_HEIGHT / 2.0);
+    vel_x = -1.0 * vel_x;
+}
 void Ball::Draw(SDL_Renderer* renderer)
 {
     rect.x = static_cast<int>(x);

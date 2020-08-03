@@ -4,13 +4,8 @@
 #include "ball.h"
 #include "paddle.h"
 
-Renderer::Renderer(const std::size_t screen_width,
-                   const std::size_t screen_height,
-                   const std::size_t grid_width, const std::size_t grid_height)
-    : screen_width(screen_width),
-      screen_height(screen_height),
-      grid_width(grid_width),
-      grid_height(grid_height) 
+Renderer::Renderer(const std::size_t screen_width, const std::size_t screen_height)
+    : screen_width(screen_width), screen_height(screen_height)
 {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) 
@@ -74,7 +69,7 @@ void Renderer::Render(Paddle  paddle1, Paddle paddle2, Ball ball)
   SDL_RenderPresent(sdl_renderer);
 }
 
-void Renderer::UpdateWindowTitle(int score, int fps) {
-  std::string title{"Pong Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
+void Renderer::UpdateWindowTitle(int score1, int score2, int fps) {
+  std::string title{"Pong Score: " + std::to_string(score1) + " vs." + std::to_string(score2) + " FPS: " + std::to_string(fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

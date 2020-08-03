@@ -20,6 +20,7 @@ class Ball
         float GetYCoord() {return y;};
         void ChangeXDir() {vel_x = vel_x * -1.0;};
         void ChangeYDir() {vel_y = vel_y * -1.0;};
+        void ResetBall(const std::size_t screen_width, const std::size_t screen_height);
         private:
             float x, y;
             float vel_x, vel_y;

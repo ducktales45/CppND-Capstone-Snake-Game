@@ -13,12 +13,11 @@ class Paddle
 
         enum class Direction { kUp, kDown, kNone };
         Paddle(float x, float y, float vel_y);
-        Direction direction = Direction::kUp;
+        Direction direction = Direction::kNone;
         void Draw(SDL_Renderer* renderer);
         void Update();
         float GetXCoord() {return x;};
         float GetYCoord() {return y;};
-        //Vector2D GetLocation();
     private:
         float x, y;
         float vel_y;
