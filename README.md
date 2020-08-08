@@ -1,6 +1,6 @@
 # CPPND: Capstone Pong Game
 
-This is a basic game of pong. The game supports two players on the same key board. The left paddle is controlled by the up and down arrow to move the paddle up and down. The right paddle is controlled by the w and s keys where w moves the paddle up and s moves the paddle down. The ball begins by move toward the left. If the ball hits the paddle, it is reflected and head towards the right and vice versa. If the ball leaves the screen, the player corresponding to the left or right side of the screen scores a point.
+This is a basic game of pong. The game supports two players on the same key board. The left paddle is controlled by the up and down arrow to move the paddle up and down. The right paddle is controlled by the w and s keys where w moves the paddle up and s moves the paddle down. The ball begins by move toward the left. If the ball hits the paddle, it is reflected and head towards the right and vice versa. If the ball leaves the screen, the player corresponding to the left or right side of the screen scores a point. The score is displayed at the top of the window. When the players exit
 
 ## Basic Structure
 Paddle.cpp --> Stores the x, y coordinates, the dimensions, and the y velocity of a paddle. Contains helper functions to draw and update position of ball.
@@ -43,4 +43,4 @@ main.cpp --> Runs the game.
 1. Clone this repo.
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./SnakeGame`.
+4. Run it: `./PongGame`.
