@@ -1,13 +1,28 @@
-# CPPND: Capstone Snake Game Example
+# CPPND: Capstone Pong Game
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+This is a basic game of pong. The game supports two players on the same key board. The left paddle is controlled by the up and down arrow to move the paddle up and down. The right paddle is controlled by the w and s keys where w moves the paddle up and s moves the paddle down. The ball begins by move toward the left. If the ball hits the paddle, it is reflected and head towards the right and vice versa. If the ball leaves the screen, the player corresponding to the left or right side of the screen scores a point.
 
-<img src="snake_game.gif"/>
+## Basic Structure
+Paddle.cpp --> Stores the x, y coordinates, the dimensions, and the y velocity of a paddle. Contains helper functions to draw and update position of ball.
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
+Ball.cpp --> Stores the x, y coordinates, the dimensions, and the x, y velocity of the ball. Contains helper functions to draw and update position of ball.
 
-In this project, you can build your own C++ application or extend this Snake game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+renderer.cpp --> Creates window and renders paddles, ball, and net to the screen.
 
+controller.cpp --> Handles player input for each paddle.
+
+game.cpp --> Contains game loop. Each loop it calls the handle input function from the controller object, updates the location of the paddles based on the input, and 
+renders based on the updated coordinates of the paddle and ball. It also checks if there is a collision between the paddle and ball and resets the ball and updates the score when the ball leaves the screen.
+
+main.cpp --> Runs the game.
+
+## Rubric points
+1. The project uses Object Oriented Programming techniques. See Ball.cpp, Paddle.cpp
+2. Classes use appropriate access specifiers for class members. See Ball.cpp, Paddle.cpp
+3. The project demonstrates an understanding of C++ functions and control structures. 
+4. The project accepts user input and processes the input. See controller.cpp 
+5. Class constructors utilize member initialization lists. See Game.cpp line 5
+6. The project makes use of references in function declarations. See controller.cpp line 18
 ## Dependencies for Running Locally
 * cmake >= 3.7
   * All OSes: [click here for installation instructions](https://cmake.org/install/)

@@ -1,7 +1,6 @@
 #ifndef BALL_H
 #define BALL_H
 
-#include "vector2D.h"
 #include "SDL.h"
 
 const int BALL_WIDTH = 15;
